@@ -14,43 +14,33 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with Mycroft Core.  If not, see <http://www.gnu.org/licenses/>.
-
-from os.path import dirname
-
-from adapt.intent import IntentBuilder
-from mycroft.skills.core import MycroftSkill
-from mycroft.util.log import getLogger
+from ovos_workshop.intents import IntentBuilder
+from ovos_workshop.skills import OVOSSkill
 
 __author__ = 'chrison999'
 
-LOGGER = getLogger(__name__)
 
-
-class LetsTalkSkill(MycroftSkill):
-
-    def __init__(self):
-        super(LetsTalkSkill, self).__init__(name="LetsTalkSkill")
+class LetsTalkSkill(OVOSSkill):
 
     def initialize(self):
-        good_morning_intent = IntentBuilder("GoodMorningIntent").\
+        good_morning_intent = IntentBuilder("GoodMorningIntent"). \
             require("GoodMorningKeyword").build()
         self.register_intent(good_morning_intent,
                              self.handle_good_morning_intent)
 
-        good_afternoon_intent = IntentBuilder("GoodAfternoonIntent").\
+        good_afternoon_intent = IntentBuilder("GoodAfternoonIntent"). \
             require("GoodAfternoonKeyword").build()
         self.register_intent(good_afternoon_intent,
                              self.handle_good_afternoon_intent)
 
-        good_evening_intent = IntentBuilder("GoodEveningIntent").\
+        good_evening_intent = IntentBuilder("GoodEveningIntent"). \
             require("GoodEveningKeyword").build()
         self.register_intent(good_evening_intent,
                              self.handle_good_evening_intent)
 
-        good_night_intent = IntentBuilder("GoodNightIntent").\
+        good_night_intent = IntentBuilder("GoodNightIntent"). \
             require("GoodNightKeyword").build()
-        self.register_intent(good_night_intent,
-                             self.handle_good_night_intent)
+        self.register_intent(good_night_intent, self.handle_good_night_intent)
 
     def handle_good_morning_intent(self, message):
         self.speak_dialog("good.morning")
@@ -63,9 +53,3 @@ class LetsTalkSkill(MycroftSkill):
 
     def handle_good_night_intent(self, message):
         self.speak_dialog("good.night")
-
-    def stop(self):
-        pass
-
-def create_skill():
-    return LetsTalkSkill()
