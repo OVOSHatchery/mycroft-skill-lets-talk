@@ -23,22 +23,22 @@ __author__ = 'chrison999'
 class LetsTalkSkill(OVOSSkill):
 
     def initialize(self):
-        good_morning_intent = IntentBuilder("GoodMorningIntent"). \
+        good_morning_intent = IntentBuilder("GoodMorningIntent").\
             require("GoodMorningKeyword").build()
         self.register_intent(good_morning_intent,
                              self.handle_good_morning_intent)
 
-        good_afternoon_intent = IntentBuilder("GoodAfternoonIntent"). \
+        good_afternoon_intent = IntentBuilder("GoodAfternoonIntent").\
             require("GoodAfternoonKeyword").build()
         self.register_intent(good_afternoon_intent,
                              self.handle_good_afternoon_intent)
 
-        good_evening_intent = IntentBuilder("GoodEveningIntent"). \
+        good_evening_intent = IntentBuilder("GoodEveningIntent").\
             require("GoodEveningKeyword").build()
         self.register_intent(good_evening_intent,
                              self.handle_good_evening_intent)
 
-        good_night_intent = IntentBuilder("GoodNightIntent"). \
+        good_night_intent = IntentBuilder("GoodNightIntent").\
             require("GoodNightKeyword").build()
         self.register_intent(good_night_intent, self.handle_good_night_intent)
 
